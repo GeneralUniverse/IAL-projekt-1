@@ -294,18 +294,23 @@ void DLL_DeleteAfter( DLList *list ) {
 		return;
 	}
 
-	DLLElementPtr afterDel;
-	if( list -> activeElement -> nextElement == NULL){
-		afterDel = NULL;
+	if(list -> activeElement -> nextElement == NULL){
+		list -> firstElement = list -> activeElement;
+		return;
 	}
-	else{ 
-		afterDel = list -> activeElement -> nextElement -> nextElement;
-	}
+
+	DLLElementPtr afterDel = list -> activeElement -> nextElement -> nextElement;
 
 	//free(list -> activeElement -> nextElement);
 	list -> activeElement -> nextElement = afterDel;
+
 	if(afterDel != NULL){
 		afterDel -> previousElement = list -> activeElement;
+	}
+
+	if(list -> activeElement -> nextElement == NULL){
+		list -> lastElement = list -> activeElement;
+		return;
 	}
 	//solved = FALSE; /* V případě řešení, smažte tento řádek! */
 }
@@ -322,19 +327,16 @@ void DLL_DeleteBefore( DLList *list ) {
 		return;
 	}
 	
-	
-	DLLElementPtr beforeDel;
-	if( list -> activeElement -> previousElement == NULL){
-		beforeDel = NULL;
-	}
-	else{ 
-		beforeDel = list -> activeElement -> previousElement -> previousElement;
-	}
+	DLLElementPtr beforeDel = list -> activeElement -> previousElement -> previousElement;
 
 	//free(list -> activeElement -> previousElement);
 	list -> activeElement -> previousElement = beforeDel;
 	if(beforeDel != NULL){
 		beforeDel -> nextElement = list -> activeElement;
+	}
+
+	if(list -> activeElement -> previousElement == NULL){
+		list -> firstElement = list -> activeElement;
 	}
 	//solved = FALSE; /* V případě řešení, smažte tento řádek! */
 }
