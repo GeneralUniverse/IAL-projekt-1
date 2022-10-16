@@ -101,7 +101,7 @@ void Queue_Init( Queue *queue ) {
 
 	queue -> firstIndex = 0;
 	queue -> freeIndex = 0;
-	for(int i = 0; i>MAX_QUEUE; i++){
+	for(int i = 0; i < MAX_QUEUE; i++){
 		queue -> array[i] = '*';
 	}
 	//solved = FALSE; /* V případě řešení, smažte tento řádek! */
@@ -127,7 +127,7 @@ int nextIndex( int index ) {
  */
 int Queue_IsEmpty( const Queue *queue ) {
 	//solved = FALSE; /* V případě řešení, smažte tento řádek! */
-	return queue->freeIndex == 0 && queue -> firstIndex == 0 ? 1 : 0;
+	return queue->firstIndex == queue -> freeIndex ? 1 : 0;
 }
 
 /**
@@ -138,8 +138,9 @@ int Queue_IsEmpty( const Queue *queue ) {
  * @param queue Ukazatel na inicializovanou strukturu fronty
  */
 int Queue_IsFull( const Queue *queue ) {
-	solved = FALSE; /* V případě řešení, smažte tento řádek! */
-	return nextIndex(queue -> freeIndex) == 0 ? 1 : 0;
+	//solved = FALSE; /* V případě řešení, smažte tento řádek! */
+	//queue -> freeIndex == MAX_QUEUE - 1? printf("\n\n\nfull\n\n\n") : printf("\n\n\nnot full\n\n\n");
+	return nextIndex(queue -> freeIndex) == queue -> firstIndex  ? 1 : 0;
 }
 
 /**
