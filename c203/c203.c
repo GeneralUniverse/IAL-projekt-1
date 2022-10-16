@@ -101,7 +101,7 @@ void Queue_Init( Queue *queue ) {
 
 	queue -> firstIndex = 0;
 	queue -> freeIndex = 0;
-	for(int i = 0; i < MAX_QUEUE; i++){
+	for(int i = 0; i <  QUEUE_SIZE; i++){
 		queue -> array[i] = '*';
 	}
 	//solved = FALSE; /* V případě řešení, smažte tento řádek! */
@@ -116,7 +116,7 @@ void Queue_Init( Queue *queue ) {
  */
 int nextIndex( int index ) {
 	//solved = FALSE; /* V případě řešení, smažte tento řádek! */
-	return (index+1)%MAX_QUEUE;
+	return (index+1)% QUEUE_SIZE;
 }
 
 /**
@@ -127,7 +127,7 @@ int nextIndex( int index ) {
  */
 int Queue_IsEmpty( const Queue *queue ) {
 	//solved = FALSE; /* V případě řešení, smažte tento řádek! */
-	return queue->firstIndex == queue -> freeIndex ? 1 : 0;
+	return (queue->firstIndex == queue -> freeIndex) ? 1 : 0;
 }
 
 /**
