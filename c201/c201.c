@@ -194,7 +194,7 @@ void List_DeleteAfter( List *list ) {
 void List_InsertAfter( List *list, int data ) {
 	//solved = FALSE; /* V případě řešení, smažte tento řádek! */
 	if(list -> activeElement != NULL){
-		ListElementPtr newElem = (ListElementPtr) malloc(sizeof(struct ListElement))*10;
+		ListElementPtr newElem = (ListElementPtr) malloc(sizeof(struct ListElement)*10);
 		if(newElem == NULL){
 			List_Error();
 		}
